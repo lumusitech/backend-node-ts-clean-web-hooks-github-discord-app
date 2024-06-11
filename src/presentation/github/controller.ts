@@ -1,9 +1,13 @@
 import type { Request, Response } from "express";
-import { GithubService } from '../../../services/github.service';
+import { DiscordService, GithubService } from "../services";
+
 
 export class GithubController {
   // dependencies injection on constructor
-  constructor(private readonly githubService = new GithubService()) { }
+  constructor(
+    private readonly githubService = new GithubService(),
+    private readonly discordService = new DiscordService()
+  ) { }
 
   webhookHandler = (req: Request, res: Response) => {
     const githubEvent = req.header('x-github-event') ?? 'unknown';
@@ -26,9 +30,8 @@ export class GithubController {
 
     }
 
-
-    console.log({ message });
-
-    res.status(202).send("Accepted");
+    this.discordService.notify(message)
+      .then(() => res.status(202).send("Accepted"))
+      .catch(() => res.status(400).json({ error: 'Internal server error' }))
   }
 }

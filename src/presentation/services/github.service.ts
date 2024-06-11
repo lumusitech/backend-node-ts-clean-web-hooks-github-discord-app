@@ -1,4 +1,4 @@
-import type { GithubIssuePayload, GithubStarPayload } from "../interfaces";
+import type { GithubIssuePayload, GithubStarPayload } from "../../interfaces";
 
 export class GithubService {
   constructor() { }

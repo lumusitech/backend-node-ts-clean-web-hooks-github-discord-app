@@ -1,6 +1,6 @@
 import express from 'express';
 import { envs } from './config';
-import { GithubController } from './config/presentation/github/controller';
+import { GithubController } from './presentation/github/controller';
 
 (async () => {
   await main()
