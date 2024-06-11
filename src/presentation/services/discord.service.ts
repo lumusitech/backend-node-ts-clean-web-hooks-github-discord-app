@@ -5,7 +5,12 @@ export class DiscordService {
 
   async notify(message: string) {
     const body = {
-      content: message
+      content: message,
+      embeds: [
+        {
+          image: { url: 'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXBidnF5d2Fsandiend2NW1nYjl4eDZpcDJqYXhscHFocmR6YjhmcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif' }
+        }
+      ]
     }
 
     const response = await fetch(this.discordWebhookUrl, {
