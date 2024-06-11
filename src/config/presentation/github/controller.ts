@@ -10,7 +10,7 @@ export class GithubController {
 
     const payload = req.body;
 
-    console.log({ githubEvent, signature });
+    console.log(JSON.stringify(payload));
 
 
     res.status(202).send("Accepted");
